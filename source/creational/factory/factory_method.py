@@ -99,14 +99,14 @@ class Sheet(Product):
         )
 
 
-class ProductCreator:
+class ProductFactory:
     registred_products = [
         Pipe,
         Sheet
     ]
 
     @classmethod
-    def create_product(cls, raw_data):
+    def create(cls, raw_data):
         for registred_product in cls.registred_products:
             if registred_product.name_pattern.search(raw_data):
                 return registred_product(raw_data)
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     ]
 
     for raw_data in table_data:
-        product = ProductCreator.create_product(raw_data)
+        product = ProductFactory.create(raw_data)
         if product:
             print(product)
     # <Pipe diameter=120, thickness=1.5, length=6000>
