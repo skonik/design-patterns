@@ -12,6 +12,10 @@ Factory method allows to decide which concrete implementation of a class should 
 
 Django rest framework implements several types of incoming request parsers. 
 Incoming requests could be represented as json string, multipart data, as files and so on. Data type is called media type(`application/json`, `multipart/form-data`)
+
+![drf parser classes](./img/drf_parsers_0.png){width=500}
+
+
 To handle all the required types of incoming media(json, forms, files, etc) we have a base class called `BaseParser`.
 
 https://github.com/encode/django-rest-framework/blob/7658ffd71d4ad07ddada20b2b9538b889ec02403/rest_framework/parsers.py#L32
@@ -73,7 +77,10 @@ class FormParser(BaseParser):
     
 ```
 
-![alt text](./img/drf_parsers.png)
+Encapsulating different behaviour inside classes is also called `strategy pattern`. Usually it's being used with factory method
+to choose what class should be created and what behaviour should be called.
+
+![drf parser classes](./img/drf_parsers_2.png){width=500}
 
 
 To decide which parser class instance to create we have another method called `select_parser`.
@@ -96,6 +103,9 @@ https://github.com/encode/django-rest-framework/blob/7658ffd71d4ad07ddada20b2b95
         return None
 
 ```
+
+![drf parser classes](./img/drf_parsers_1.png){width=500}
+
 
 
 ## Singleton
